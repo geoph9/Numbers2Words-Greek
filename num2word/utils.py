@@ -76,7 +76,17 @@ def handle_hours(word: str):
     if len(parts) != 2 or "" in parts:
         # Just ignore the ':'
         return word
+    try:
+        if int(parts[0]) < 1 or int(parts[0]) > 12:
+            # then it is not an hour
+            return word
+    except Exception as e:
+        # print("Exception:", e)
+        pass
     word = re.sub(":", " και ", word)
+    if parts[0] == "1": word = re.sub("1", "μία", word[0]) + word[1:]
+    elif parts[0] == "3": word = re.sub("3", "τρείς", word[0]) + word[1:]
+    elif parts[0] == "4": word = re.sub("4", "τέσσερις", word[0]) + word[1:]
     if parts[1] == "15":
         word = re.sub("15", "τέταρτο", word)
     elif parts[1] == "30":
