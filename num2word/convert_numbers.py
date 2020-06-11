@@ -22,6 +22,7 @@
 
 
 from num2word.prefixes import _prefixes
+import re
 
 
 to_plural = lambda word: re.sub("ερα", "ερις", re.sub("τρία", "τρείς", word))  # for 13 and 14 special cases in plural
