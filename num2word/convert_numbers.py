@@ -24,6 +24,9 @@
 from num2word.prefixes import _prefixes
 
 
+to_plural = lambda word: re.sub("ερα", "ερις", re.sub("τρία", "τρείς", word))  # for 13 and 14 special cases in plural
+
+
 def convert_numbers(word: str) -> str:
     """ Given a string as input, the function will return its transliteration if
         the string can be transformed to a digit. Otherwise, it will return the

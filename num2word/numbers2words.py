@@ -35,10 +35,6 @@ from num2word.convert_numbers import convert_numbers
 
 
 
-to_plural = lambda word: re.sub("ερα", "ερις", re.sub("τρία", "τρείς", word))  # for 13 and 14 special cases in plural
-
-
-
 def convert_sentence(sentence: str, to_lower: bool = False):
     if sentence.strip() == "":
         return sentence
