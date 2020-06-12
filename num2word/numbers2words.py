@@ -30,6 +30,9 @@ import re
 from tempfile import mkstemp
 from shutil import move
 
+from num2word.utils import handle_commas, handle_hours, convert_ordinals
+from num2word.convert_numbers import convert_numbers
+
 
 def convert_sentence(sentence: str, to_lower: bool = False):
     if sentence.strip() == "":
@@ -147,8 +150,8 @@ def cmdline():
                              "   b) if --out-path is a directory then we will create a "
                              "      new file with the same name as --path inside --out-path."
                              "2. If you provided a directory in --path then:"
-                             "   a) --out-path MUST be the directory when you want your output"
-                             "      files to be saved (the names will be saved as before)."
+                             "   a) --out-path MUST be the directory where you want to save"
+                             "       your output (the names will be the same as before)."
                              "3. If --out-path is not used then we will replace the file after"
                              "   prompting you.")
     args = parser.parse_args()
@@ -227,6 +230,4 @@ def cmdline():
 
 
 if __name__ == '__main__':
-    from num2word.utils import handle_commas, handle_hours, convert_ordinals
-    from num2word.convert_numbers import convert_numbers
     cmdline()
