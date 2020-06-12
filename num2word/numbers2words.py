@@ -30,10 +30,6 @@ import re
 from tempfile import mkstemp
 from shutil import move
 
-from num2word.utils import handle_commas, handle_hours
-from num2word.convert_numbers import convert_numbers
-
-
 
 def convert_sentence(sentence: str, to_lower: bool = False):
     if sentence.strip() == "":
@@ -46,16 +42,14 @@ def convert_sentence(sentence: str, to_lower: bool = False):
         # Handle commas (convert to decimals) and handle hours
         word_complex = handle_commas(word_complex)
         word_complex = handle_hours(word_complex)
+        word_complex = convert_ordinals(word_complex)
         for word in word_complex.split():
             # word = word.lower()
-            if word == "":
+            if word.strip() == "":
                 continue
             # Split words into words and digits (numbers). E.g. είναι2 -> είναι 2.
-            match = re.match(r"([a-zα-ωά-ώϊΐϋΰ]+)([0-9]+)", word, re.I)
-            if match:
-                words = match.groups()
-            else:
-                words = [word]
+            words = re.split(r"(\d+)", word)  # may have spaces
+            words = (w for w in words if w.strip() != "")  # remove spaces from list
             for w in words:
                 if w.strip() == "":
                     continue
@@ -69,8 +63,6 @@ def convert_sentence(sentence: str, to_lower: bool = False):
     final_sent = re.sub(r"\s\?", "?", final_sent)
     final_sent = re.sub(r"\s\n", "\n", final_sent)
     final_sent = re.sub(r"\s\t", "\t", final_sent)
-    # final_sent = re.sub(":", " ", final_sent)
-    # final_sent = re.sub(r"\s+", " ", final_sent)
     return final_sent
 
 
@@ -235,4 +227,6 @@ def cmdline():
 
 
 if __name__ == '__main__':
+    from num2word.utils import handle_commas, handle_hours, convert_ordinals
+    from num2word.convert_numbers import convert_numbers
     cmdline()

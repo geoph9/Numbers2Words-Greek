@@ -85,6 +85,17 @@ def _check_input(number: str, length: int, operator: str = None):
         assert len(number) == length, "The digit must contain " + str(length) + " digits."
 
 
+def _special_case(number: str) -> str:
+    # Special case
+    temp_num = number
+    for index, sub_digit in enumerate(number):
+        if sub_digit == "0":
+            temp_num = number[index + 1:]
+        else:
+            break
+    return temp_num
+
+
 def _convert_1digit(number: str) -> str:
     _check_input(number, 1)
     if number not in _prefixes['1digit'].keys():
@@ -98,14 +109,7 @@ def _convert_2digit(number: str) -> str:
     if number in _prefixes['2digit'].keys():  # so if it is 10 then return 'δέκα' (same for 11, 12 , 20, ..., 90)
         return _prefixes['2digit'][number]
     first_digit = number[0]  # e.g. from 15 keep only 1
-    # Special case
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]
-        else:
-            break
-    number = temp_num
+    number = _special_case(number)
     if len(number) == 1:
         return _convert_1digit(number)  # If we had something like 01 then return the word for 1
     elif len(number) == 0:
@@ -123,14 +127,7 @@ def _convert_3digit(number: str) -> str:
     _check_input(number, 3)
     if number in _prefixes['3digit'].keys():  # E.g. if we have 300 then just return "τριακόσια"
         return _prefixes['3digit'][number]
-    # Special case
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]
-        else:
-            break
-    number = temp_num
+    number = _special_case(number)
     if len(number) == 2:
         return _convert_2digit(number)  # If we had something like 012 then return the word for 12
     elif len(number) == 1:
@@ -153,14 +150,7 @@ def _convert_4digit(number: str) -> str:
     if number in _prefixes['4digit'].keys():  # E.g. if we have 7000 then just return "εφτά χιλιάδες"
         return _prefixes['4digit'][number]
     first_digit = number[0]  # e.g. from 7879 keep 7
-    # Special case
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]
-        else:
-            number = temp_num
-            break
+    number = _special_case(number)
     if len(number) == 3:
         return _convert_3digit(number)  # If we had something like 0112 then return the word for 112
     elif len(number) == 2:
@@ -184,13 +174,7 @@ def _convert_5digit(number: str) -> str:
     if number in _prefixes['5digit'].keys():  # E.g. if we have 40000 then just return "σαράντα χιλιάδες"
         return _prefixes['5digit'][number]
     # Special case
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]
-        else:
-            number = temp_num
-            break
+    number = _special_case(number)
     if len(number) == 4:
         return _convert_4digit(number)  # If we had something like 01112 then return the word for 1112
     if len(number) == 3:
@@ -213,14 +197,7 @@ def _convert_6digit(number: str) -> str:
     _check_input(number, 6)
     if number in _prefixes['6digit'].keys():  # E.g. if we have 400000 then just return "σαράντα χιλιάδες"
         return _prefixes['6digit'][number]
-    # Special case
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]
-        else:
-            break
-    number = temp_num
+    number = _special_case(number)
     if len(number) == 5:
         return _convert_5digit(number)  # If we had something like 012112 then return the word for 12112
     if len(number) == 4:
@@ -258,13 +235,7 @@ def _convert_more_than7_less_than10_digits(number: str) -> str:
     # --------------------------------- SPECIAL CASE ----------------------------------
     # Special case: if called from a larger number then there is a possibility to have all zeroes
     # E.g. for 3 billion we are going to have a 3 and 9 zeroes after that. We don't want to append "εκκατομυριο" to that
-    temp_num = number
-    for index, sub_digit in enumerate(number):
-        if sub_digit == "0":
-            temp_num = number[index + 1:]  # e.g. if number=0010000 then it will be converted to 10000
-        else:
-            break
-    number = temp_num
+    number = _special_case(number)
     # number = re.sub("0", "", temp_num)
     if len(number) == 6:
         out = _convert_6digit(number)
