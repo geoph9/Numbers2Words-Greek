@@ -25,7 +25,7 @@ from num2word.convert_numbers import convert_numbers
 import re
 
 
-def handle_commas(word: str, comma_symbol=",") -> str:
+def handle_commas(word, comma_symbol=","):
     # If , (comma) is not between two numbers then erase it.
     comma_index = word.find(comma_symbol)
     while comma_index != -1:
@@ -65,7 +65,7 @@ def handle_commas(word: str, comma_symbol=",") -> str:
     return word
 
 
-def handle_hours(word: str):
+def handle_hours(word):
     # We will assume that the word is an hour if it contains a ":"
     # For example, convert 10:45 to 10 και 45
     # If the minutes are 15 or 30 then the hour will look like:

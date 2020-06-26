@@ -34,7 +34,7 @@ from num2word.utils import handle_commas, handle_hours, convert_ordinals
 from num2word.convert_numbers import convert_numbers
 
 
-def convert_sentence(sentence: str, to_lower: bool = False):
+def convert_sentence(sentence, to_lower = False):
     if sentence.strip() == "":
         return sentence
     final_sent = []
@@ -69,7 +69,7 @@ def convert_sentence(sentence: str, to_lower: bool = False):
     return final_sent
 
 
-def _convert_file_contents(filepath: str, out_path: str):
+def _convert_file_contents(filepath, out_path):
     """ Replaces the numbers of each sentence in the provided input file, to the corresponding 
         greek word.
         Args:
@@ -112,7 +112,7 @@ def _convert_file_contents(filepath: str, out_path: str):
                     line = fr.readline()
 
 
-def _replace_file_prompt(filepath: str) -> bool:
+def _replace_file_prompt(filepath):
     ans = input("Are you sure you want to replace the contents of {}? [Y/N]".format(filepath))
     if ans.lower() in ['y', 'yes', 'sure']:
         return True
