@@ -157,7 +157,7 @@ def convert_ordinals(word):
         if 1 <= number <= 9: out_words += _standard_ordinals[number] + suffix + " "; continue
         if number in _standard_ordinals.keys(): out_words += _standard_ordinals[number] + intonate(suffix) + " "; continue  # catch 20, 30, 40...
         if number in [10, 11, 12]: out_words += convert_numbers(str(number)) + "τ" + suffix + " "; continue
-        if 13 <= number <= 19: out_words+= "δέκατ" + suffix + " " + _standard_ordinals[int(str(number[-1]))] + suffix + " "; continue
+        if 13 <= number <= 19: out_words+= "δέκατ" + suffix + " " + _standard_ordinals[int(str(number)[-1])] + suffix + " "; continue
         try:
             num_of_digits = len(str(number))
             # e.g. from 23ος keep the 2 and write εικοστός (which is 2 * 10^(2-1))
