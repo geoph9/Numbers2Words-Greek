@@ -122,8 +122,13 @@ _standard_ordinals = {
     700: "εφτακοσιοστ",
     800: "οχτακοσιοστ",
     900: "εννιακοσιοστ",
-    1000: "χιλιοστ"
+    1000: "χιλιοστ",
 }
+
+# Two thousands and one milion are unique values in Greek ordinals
+two_thousands_ordinal_value = "διχιλιοστ"
+one_milion_ordinal_value = "εκατομμυριοστ"
+
 
 def intonate(syllabel):
     out = syllabel
@@ -135,7 +140,6 @@ def intonate(syllabel):
     if 'υ' in syllabel: out = re.sub("υ", "ύ", syllabel)
     if 'ω' in syllabel: out = re.sub("ω", "ώ", syllabel)
     return out
-
 
 def convert_ordinals(word):
     out_words = ""
@@ -158,12 +162,28 @@ def convert_ordinals(word):
         if number in _standard_ordinals.keys(): out_words += _standard_ordinals[number] + intonate(suffix) + " "; continue  # catch 20, 30, 40...
         if number in [10, 11, 12]: out_words += convert_numbers(str(number)) + "τ" + suffix + " "; continue
         if 13 <= number <= 19: out_words+= "δέκατ" + suffix + " " + _standard_ordinals[int(str(number)[-1])] + suffix + " "; continue
+        if number == 2000: out_words += two_thousands_ordinal_value + suffix + " "; continue
+        if number == 1_000_000: out_words += one_milion_ordinal_value + suffix + " "; continue
         try:
-            num_of_digits = len(str(number))
             # e.g. from 23ος keep the 2 and write εικοστός (which is 2 * 10^(2-1))
             # e.g. from 401ος keep the 4 and write τετρακοσιοστός (which is 4 * 10^(3-1)) (3 is the number of digits in 401)
-            out =  _standard_ordinals[int(str(number)[0]) * (10**(num_of_digits-1))] + intonate(suffix)
-            for i in range(1, num_of_digits):  # for the remaining digits
+            num_of_digits = len(str(number))
+            value = int(str(number)[0]) * (10**(num_of_digits-1))
+            delta = 1
+            # if thousands value equals or more than 10_000
+            if value > 9999:
+                # Calculating count of thousands in the number
+                # Example:
+                # Input: 123,456;   Output: 123,000
+                # Input: 1,234,567; Output: 1,234,000
+                value = int(number / 1000) * 1000
+                delta = num_of_digits - 3
+
+            if value > 1999:
+                out = convert_numbers(str(value))
+            else:
+                out = _standard_ordinals[value]
+            for i in range(delta, num_of_digits):  # for the remaining digits
                 temp_word = str(number)[i:] + suffix
                 if temp_word.startswith("0"): continue  # e.g. if word is "103ος" then in this loop we will start from 03 and we want to ignore the 0
                 out += " " + convert_ordinals(temp_word)
