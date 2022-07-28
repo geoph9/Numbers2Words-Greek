@@ -98,7 +98,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "certifi"
-version = "2022.5.18.1"
+version = "2022.6.15"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "dev"
 optional = false
@@ -428,14 +428,14 @@ mdurl = ">=0.1,<1.0"
 typing_extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
 [package.extras]
-benchmarking = ["psutil", "pytest", "pytest-benchmark (>=3.2,<4.0)"]
-code_style = ["pre-commit (==2.6)"]
-compare = ["commonmark (>=0.9.1,<0.10.0)", "markdown (>=3.3.6,<3.4.0)", "mistletoe (>=0.8.1,<0.9.0)", "mistune (>=2.0.2,<2.1.0)", "panflute (>=2.1.3,<2.2.0)"]
-linkify = ["linkify-it-py (>=1.0,<2.0)"]
-plugins = ["mdit-py-plugins"]
+testing = ["pytest-regressions", "pytest-cov", "pytest", "coverage"]
+rtd = ["sphinx-book-theme", "sphinx-design", "sphinx-copybutton", "sphinx", "pyyaml", "myst-parser", "attrs"]
 profiling = ["gprof2dot"]
-rtd = ["attrs", "myst-parser", "pyyaml", "sphinx", "sphinx-copybutton", "sphinx-design", "sphinx-book-theme"]
-testing = ["coverage", "pytest", "pytest-cov", "pytest-regressions"]
+plugins = ["mdit-py-plugins"]
+linkify = ["linkify-it-py (>=1.0,<2.0)"]
+compare = ["panflute (>=2.1.3,<2.2.0)", "mistune (>=2.0.2,<2.1.0)", "mistletoe (>=0.8.1,<0.9.0)", "markdown (>=3.3.6,<3.4.0)", "commonmark (>=0.9.1,<0.10.0)"]
+code_style = ["pre-commit (==2.6)"]
+benchmarking = ["pytest-benchmark (>=3.2,<4.0)", "pytest", "psutil"]
 
 [[package]]
 name = "markupsafe"
@@ -465,9 +465,9 @@ python-versions = "~=3.6"
 markdown-it-py = ">=1.0.0,<3.0.0"
 
 [package.extras]
+testing = ["pytest-regressions", "pytest-cov", "pytest (>=3.6,<4)", "coverage"]
+rtd = ["sphinx-book-theme (>=0.1.0,<0.2.0)", "myst-parser (>=0.14.0,<0.15.0)"]
 code_style = ["pre-commit (==2.6)"]
-rtd = ["myst-parser (>=0.14.0,<0.15.0)", "sphinx-book-theme (>=0.1.0,<0.2.0)"]
-testing = ["coverage", "pytest (>=3.6,<4)", "pytest-cov", "pytest-regressions"]
 
 [[package]]
 name = "mdurl"
@@ -597,8 +597,8 @@ python-versions = ">=3.6"
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "pre-commit"
@@ -902,8 +902,8 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
+lint = ["docutils-stubs", "mypy", "flake8"]
 
 [[package]]
 name = "sphinxcontrib-devhelp"
@@ -914,8 +914,8 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
+lint = ["docutils-stubs", "mypy", "flake8"]
 
 [[package]]
 name = "sphinxcontrib-htmlhelp"
@@ -926,8 +926,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-lint = ["flake8", "mypy", "docutils-stubs"]
-test = ["pytest", "html5lib"]
+test = ["html5lib", "pytest"]
+lint = ["docutils-stubs", "mypy", "flake8"]
 
 [[package]]
 name = "sphinxcontrib-jsmath"
@@ -938,7 +938,7 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-test = ["pytest", "flake8", "mypy"]
+test = ["mypy", "flake8", "pytest"]
 
 [[package]]
 name = "sphinxcontrib-qthelp"
@@ -949,8 +949,8 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
-lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
+lint = ["docutils-stubs", "mypy", "flake8"]
 
 [[package]]
 name = "sphinxcontrib-serializinghtml"
@@ -1156,8 +1156,8 @@ black = [
     {file = "black-22.3.0.tar.gz", hash = "sha256:35020b8886c022ced9282b51b5a875b6d1ab0c387b31a065b84db7c33085ca79"},
 ]
 certifi = [
-    {file = "certifi-2022.5.18.1-py3-none-any.whl", hash = "sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a"},
-    {file = "certifi-2022.5.18.1.tar.gz", hash = "sha256:9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7"},
+    {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
+    {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
 ]
 cfgv = [
     {file = "cfgv-3.3.1-py2.py3-none-any.whl", hash = "sha256:c6a0883f3917a037485059700b9e75da2464e6c27051014ad85ba6aaa5884426"},
