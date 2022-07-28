@@ -30,8 +30,8 @@ import re
 from tempfile import mkstemp
 from shutil import move
 
-from num2word.utils import handle_commas, handle_hours, convert_ordinals
-from num2word.convert_numbers import convert_numbers
+from num2word_greek.utils import handle_commas, handle_hours, convert_ordinals
+from num2word_greek.convert_numbers import convert_numbers
 
 
 def convert_sentence(sentence: str, to_lower: bool = False):

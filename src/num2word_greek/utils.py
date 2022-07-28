@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-from num2word.convert_numbers import convert_numbers
+from num2word_greek.convert_numbers import convert_numbers
 import re
 
 
