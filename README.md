@@ -1,11 +1,48 @@
-# Number To Word Conversion For Greek
+# Numbers2Words Greek
+
+[![PyPI](https://img.shields.io/pypi/v/Numbers2Words-Greek.svg)][pypi_]
+[![Status](https://img.shields.io/pypi/status/Numbers2Words-Greek.svg)][status]
+[![Python Version](https://img.shields.io/pypi/pyversions/Numbers2Words-Greek)][python version]
+[![License](https://img.shields.io/pypi/l/Numbers2Words-Greek)][license]
+
+[![Read the documentation at https://Numbers2Words-Greek.readthedocs.io/](https://img.shields.io/readthedocs/Numbers2Words-Greek/latest.svg?label=Read%20the%20Docs)][read the docs]
+[![Tests](https://github.com/geoph9/Numbers2Words-Greek/workflows/Tests/badge.svg)][tests]
+[![Codecov](https://codecov.io/gh/geoph9/Numbers2Words-Greek/branch/main/graph/badge.svg)][codecov]
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
+
+[pypi_]: https://pypi.org/project/Numbers2Words-Greek/
+[status]: https://pypi.org/project/Numbers2Words-Greek/
+[python version]: https://pypi.org/project/Numbers2Words-Greek
+[read the docs]: https://Numbers2Words-Greek.readthedocs.io/
+[tests]: https://github.com/geoph9/Numbers2Words-Greek/actions?workflow=Tests
+[codecov]: https://app.codecov.io/gh/geoph9/Numbers2Words-Greek
+[pre-commit]: https://github.com/pre-commit/pre-commit
+[black]: https://github.com/psf/black
+
+## Features
+
 
 This repository contains code for converting converting numbers 
 to words (e.g. 10 -> δέκα) up until `10^13 - 1` (1 trillion minus one).
 
+- Convert numbers to greek words.
+- Support for ordinals.
+- Support for certain time formats.
+
 ## Installation:
 
-In order to install this repository as a package, do the following:
+
+You can install _Numbers2Words Greek_ via [pip] from [PyPI]:
+
+```console
+$ pip install Numbers2Words-Greek
+```
+
+If using `poetry`, then you can do `poetry add Numbers2Words-Greek`.
+
+To install this repository locally, in editable mode, do the following:
 
 ```
 git clone https://github.com/geoph9/Numbers2Words-Greek.git
@@ -14,10 +51,9 @@ pip install -e .
 ```
 
 If no error occurs then you are fine. To make sure, you may run: 
-`python -c "import num2word"`. If that works, then you may use 
-this repo as a package.
+`python -c "import num2word"`.
 
-## How to use
+## Usage
 
 ### The `numbers2words.py` script:
 This script contains functionality to convert numbers to their
@@ -72,3 +108,35 @@ directory and will change the numbers to their corresponding greek words.
 
 1. Handle fractions in `numbers2words`. E.g. Convert "1/10" to "ένα δέκατο".
 2. Handle time input in `numbers2words`. E.g. Convert "11:20" to "έντεκα και είκοσι"
+
+
+## Contributing
+
+Contributions are very welcome.
+To learn more, see the [Contributor Guide].
+
+## License
+
+Distributed under the terms of the [MIT license][license],
+_Numbers2Words Greek_ is free and open source software.
+
+## Issues
+
+If you encounter any problems,
+please [file an issue] along with a detailed description.
+
+## Credits
+
+This project was generated from [@cjolowicz]'s [Hypermodern Python Cookiecutter] template.
+
+[@cjolowicz]: https://github.com/cjolowicz
+[pypi]: https://pypi.org/
+[hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
+[file an issue]: https://github.com/geoph9/Numbers2Words-Greek/issues
+[pip]: https://pip.pypa.io/
+
+<!-- github-only -->
+
+[license]: https://github.com/geoph9/Numbers2Words-Greek/blob/main/LICENSE
+[contributor guide]: https://github.com/geoph9/Numbers2Words-Greek/blob/main/CONTRIBUTING.md
+[command-line reference]: https://Numbers2Words-Greek.readthedocs.io/en/latest/usage.html

@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-from num2word.prefixes import _prefixes
+from num2word_greek.prefixes import _prefixes
 import re
 
 
