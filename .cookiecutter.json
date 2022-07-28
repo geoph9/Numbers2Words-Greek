@@ -1,0 +1,14 @@
+{
+  "_output_dir": "/m/home/home3/30/karakag1/unix/Repos/dup",
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Georgios K.",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 2 - Pre-Alpha",
+  "email": "geoph9@protonmail.com",
+  "friendly_name": "Numbers2Words Greek",
+  "github_user": "geoph9",
+  "license": "MIT",
+  "package_name": "num2word_greek",
+  "project_name": "Numbers2Words-Greek",
+  "version": "0.0.1a"
+}
